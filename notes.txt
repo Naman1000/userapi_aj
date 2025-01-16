@@ -1,0 +1,15 @@
+This is class 5th of nodejs
+
+1 npm init -y
+2 install dependancies
+
+Mongoose is a driver for mongodb
+
+mongodb -> mongoshell commands inject 
+string templating 
+
+
+
+mongoose has a lot of functions that implement mongodb queries
+mongoose also lets us connect our database easily using an async function
+
