@@ -13,3 +13,33 @@ string templating
 mongoose has a lot of functions that implement mongodb queries
 mongoose also lets us connect our database easily using an async function
 
+
+
+1. connect to cloud database
+
+step 1  create a new project on moongodb atlas
+add the project name
+add the server choice
+initialises
+
+
+step 2 go to clusters, then click on connect and follow the steps
+
+step 3 paste the connection URI in your project
+
+const clouddburl = mongodb+srv://vverma971:<db_password>@cluster0.hwin2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+mongoose.connect(clouddburl)
+.then(()=>{
+    console.log("Connected to MongoDB");
+})
+.catch((err)=>{
+    console.log(err);
+})
+
+
+
+step 4 Create mongoose model
+
+to be continued in next class
