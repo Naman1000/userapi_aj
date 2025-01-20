@@ -13,6 +13,13 @@ string templating
 mongoose has a lot of functions that implement mongodb queries
 mongoose also lets us connect our database easily using an async function
 
+Steps to connect to database
+1. npm i mongoose
+2. database URI
+3. mongooose.connect(database_uri)
+    .then(()=>{console.log("db connected")})
+    .catch((err)=>console.log(err));
+
 
 
 1. connect to cloud database
@@ -42,4 +49,46 @@ mongoose.connect(clouddburl)
 
 step 4 Create mongoose model
 
-to be continued in next class
+
+-------------------------------------------------------------------------------
+
+step 1 create the server project  -express, middlewares, routing, mvc structure
+step 2 connect to the database 
+step 3 data validation -> make sure that our database is uniform and avoids any conflict 
+                        -> to avoid any data mis-interpretation 
+                        > Authentication process should be well defined and smooth
+
+    Schema Validation -> defining what format of data will be stored on the db 
+
+    Schema is the format of data that we collect 
+    Implementation : We model the data using mongoose to implement schema validation
+
+    Middleware Validation -> using a middleware 
+                        -> only required data reaches the user
+                        -> there is no leakage of data
+                        -> security measures 
+    Implemenation -> we use jwt (jsonwebtoken) to authenticate the users based on their credentials 
+
+
+
+    Prooduction Level API
+
+    1- The API is Error Free 
+    2- The data interaction should be validated
+    3- Very Very Secure!
+    4- Deployed with encrypted keys (Security)
+
+
+
+    Validation Steps
+
+    1. Moongoose Schema
+    2. Defined what fields of information would be there, along with their configurations
+    3. Created a user model based on the schema, and exported it as an object
+
+
+    Security :
+
+    1. CORS -> Client side ip addresses restrict
+    2. Encrypt the passwords
+    3. Token Based Authentication
