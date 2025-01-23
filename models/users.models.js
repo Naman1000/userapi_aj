@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 //import mongoose for managing the data related functions in MongoDB
 
+const bcrypt = require("bcrypt");
+
 
 //Mongoose Schemas are used for modelling and validating the data that we send to our database
 //This helps us in making sure which data is valid and which is not
@@ -41,6 +43,53 @@ const userSchema = new mongoose.Schema({
         default:"user" //if the user does not enter a role, the default value will be user
     }
 })
+
+userSchema.pre('save', async function(next){
+
+    const user = this;
+
+    try{
+
+        //salt is a string that is added to the password and mixed and a new string is generated
+        //that is not easily identified 
+
+        // 1.Encryption Algorithm -cryptographic hash function
+        //2 Salt - this is a string that is added to the password and mixed and a new string is generated
+        //that is not easily identified
+
+        const salt = await bcrypt.genSalt(10);
+        //10 is the number of rounds of hashing that will be done on the password
+
+
+        const hashedPassword = await bcrypt.hash(user.password, salt); 
+
+        //replace the user password with the hashed password
+        user.password = hashedPassword;
+
+        next();
+
+    }
+    catch(err){
+        console.log(err);
+    }
+
+})
+
+userSchema.methods.comparePassword = async function(password){
+    const user = this;
+
+    try{
+        const result = await bcrypt.compare(password, this.password);
+
+        return result;
+
+
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
 
 const User = mongoose.model("User", userSchema);
 

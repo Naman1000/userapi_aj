@@ -8,9 +8,23 @@ const logger = require("./middleware/logger.middleware");
 const clouddburl = "mongodb+srv://vverma971:HaEnhf14T473RXUs@cluster0.hwin2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 const User = require("./models/users.models");
 const userRoutes = require("./routes/user.routes");
+const cors = require("cors");
 
 
 app.use(express.json());
+
+// const corsOptions = {
+//     origin: "*",
+//     methods: "GET, POST",
+//     // allowedHeaders: "Content-Type",
+//     // optionsSuccessStatus: 200
+//     Credentials:true,
+//     // preflightContinue:true -> this would pass these options listed above to the next middleware 
+// }
+
+// app.use(cors(corsOptions));
+
+
 // step 4
 mongoose.connect(clouddburl)
 .then(()=>{

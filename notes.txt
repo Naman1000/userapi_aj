@@ -89,6 +89,141 @@ step 3 data validation -> make sure that our database is uniform and avoids any 
 
     Security :
 
-    1. CORS -> Client side ip addresses restrict
+    1. Client side ip addresses restrict
     2. Encrypt the passwords
     3. Token Based Authentication
+
+
+
+    Client ---------||----Server-----||-----------DB
+
+
+    Hackers Attack -> DB Query Injection 
+    DLL Injection -> Dyanmic Library Injection 
+    API Request -> body {
+        dll
+    }
+
+
+
+    Ecmmerce API -> Payment Api 
+    {
+        user:username,
+        phone:974074073,
+        amount:1906,
+        status:pending
+    }
+
+{
+    status:paid
+}
+
+
+authentication : information 
+
+
+Payment Gateway
+Authentication
+Forgot Password
+
+
+
+CORS -> Cross Origin Resource Policy
+ 
+ That helps us define which clients would be served using our API
+
+ 1. npm i cors
+ 2. const cors = require("cors");
+ 
+
+CORS is used as a middleware
+Stateless - we dont store any data on server
+Any API call, that comes to our server, should have enough information for it to be responded 
+
+
+RESTful API 
+Representational State Transfer API 
+
+
+Stateless -> body, header 
+HTTPS Methods -> GET, POST, PUT, DELETE
+use less bandwith -> JSON 
+Security -> COORS JWT Password
+MVC -> Code on Demand 
+
+
+Client ------------> API  --------------> Server 
+
+
+
+
+FULLSTACK PROJECT
+
+
+Front End                                      Backend 
+Vishoo's Social                                Vishoo's Backend
+Media 
+
+
+API Structured
+
+header{
+    request configuration
+}
+body{
+    user information
+}
+
+
+Content-Type:application/json
+
+Authorization, security etc
+
+Stateless -> secruity cookies, tokens 
+
+Cookies-> Authentication, storing preferences, restoring form information 
+
+const corsOptions = {
+    origin: "*",
+    methods: "GET, POST",
+    // allowedHeaders: "Content-Type",
+    // optionsSuccessStatus: 200
+    Credentials:true,
+    // preflightContinue:true -> this would pass these options listed above to the next middleware 
+}
+
+
+Encrypt the password 
+
+user created------>info is validated ------> stored in the database 
+post /users --------> mongoose ---->hash the password ---------> user.create(req.body);
+
+bcrypt - package that helps us encrypt user passwords
+
+API Authentication using JWT
+
+1. npm i jsonwebtoken
+2. create auth.js file in middleware
+3. To generate Token we use jwt.sign()
+
+jwt.sign() is a predefined method, that generate the token during
+login and signup routes
+
+
+token -> header, payload, signature
+payload-> which data would be used to identify a user
+Token_secret -> this is a custom key that we use as salt to better
+encrypt our token
+properties: expiresIn, algorithm, issuer
+
+
+4. in the routs, we'll first extract the payload
+5. Generate Token using the payload 
+
+
+Authenticating Token
+
+1. extract the token
+2. check for Error
+3. jwt.verify -> a prebuilt method to verify tokens, along with the secret keys
+4. middleware in the routes that we want to protect
